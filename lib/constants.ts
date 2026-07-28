@@ -1,9 +1,27 @@
 export const SITE_CONFIG = {
-  name: 'NETRIX CRM',
-  fullName: 'NETRIX CRM Interno',
-  description: 'Sistema de gestión de clientes y pipeline comercial de NETRIX Corporation',
+  name: 'CRM Claudia Shirley',
+  fullName: 'CRM Claudia Shirley',
+  description: 'Gestión de leads automotriz',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+  businessName: 'Claudia Shirley',
+  sector: 'Venta de autos',
 }
+
+export const CONTACT = {
+  whatsapp: '+57 300 000 0000', // TODO: reemplazar con el WhatsApp real de Claudia Shirley
+  email: 'contacto@claudiashirley.com', // TODO: reemplazar con el email real de Claudia Shirley
+}
+
+export const WHATSAPP_TEMPLATES = {
+  followUp: (name: string) =>
+    `Hola ${name}, te escribimos de Claudia Shirley para hacer seguimiento a tu interés en nuestros vehículos. ¿Sigues interesado/a?`,
+  reactivation: (name: string) =>
+    `Hola ${name}, ¿cómo estás? Queremos contarte sobre nuestras nuevas opciones de vehículos que pueden interesarte.`,
+  event: (name: string) =>
+    `Hola ${name}, te invitamos a nuestro próximo evento de Claudia Shirley. ¡Te esperamos!`,
+}
+
+export const ENABLE_AI_SUGGESTIONS = false // TODO: activar sugerencias con IA a futuro
 
 export const NETRIX = {
   name: 'NETRIX Corporation',
@@ -65,14 +83,8 @@ export const CRON_DAILY_HOUR = 9
 export const CRON_WEEKLY_DAY = 1
 export const STAGNATION_DAYS = 3
 
-export const PRICING_DEFAULTS: Record<string, Record<string, number>> = {
-  CRM:            { N1: 2500000, N2: 3000000, N3: 3500000, N4: 4000000 },
-  Web:            { N1: 2000000, N2: 2500000, N3: 3000000, N4: 3500000 },
-  Ecommerce:      { N1: 3000000, N2: 3500000, N3: 4000000, N4: 5000000 },
-  Dashboard:      { N1: 2000000, N2: 2500000, N3: 3000000, N4: 3500000 },
-  Chatbot:        { N1: 2500000, N2: 3000000, N3: 3500000, N4: 4000000 },
-  Automatizacion: { N1: 2000000, N2: 2500000, N3: 3000000, N4: 4000000 },
-  Landing:        { N1: 1200000, N2: 1600000, N3: 2000000, N4: 2500000 },
-  API:            { N1: 2000000, N2: 3000000, N3: 4000000, N4: 5000000 },
-  Diagnostico:    { N1: 500000,  N2: 500000,  N3: 500000,  N4: 500000  },
+export const PRICING_DEFAULTS = {
+  defaultDealValue: 0,
+  currency: 'COP',
+  currencySymbol: '$',
 }
