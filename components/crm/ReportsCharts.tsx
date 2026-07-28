@@ -9,11 +9,11 @@ import { formatCOP } from '@/lib/utils'
 import { TrendingUp, Target, Users, DollarSign } from 'lucide-react'
 
 const STAGE_COLORS: Record<string, string> = {
-  LEAD: '#3B82F6',
-  LLAMADA: '#F59E0B',
-  EN_PROCESO: '#F97316',
-  CERRADO: '#22C55E',
-  PERDIDO: '#EF4444',
+  Lead: '#3B82F6',
+  Propuesta_Enviada: '#F59E0B',
+  Negociacion: '#F97316',
+  Cerrado: '#22C55E',
+  Perdido: '#EF4444',
 }
 
 const SOURCE_COLORS = ['#FF2E2E', '#3B82F6', '#F59E0B', '#22C55E', '#F97316', '#8B5CF6']

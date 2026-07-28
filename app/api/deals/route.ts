@@ -29,7 +29,7 @@ export async function POST(request: Request) {
       service: body.service,
       level: body.level || 'N1',
       valueCop: BigInt(body.valueCop || 0),
-      stage: body.stage || 'LEAD',
+      stage: body.stage || 'Lead',
       probability: body.probability ?? 10,
       nextFollowUp: body.nextFollowUp ? new Date(body.nextFollowUp) : null,
       userId,

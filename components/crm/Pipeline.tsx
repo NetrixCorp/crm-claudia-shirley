@@ -11,11 +11,11 @@ import { DealCard } from './DealCard'
 import { DealForm } from './DealForm'
 
 const STAGE_ICONS: Record<string, any> = {
-  LEAD: CircleDot,
-  LLAMADA: Send,
-  EN_PROCESO: Handshake,
-  CERRADO: CheckCircle2,
-  PERDIDO: XCircle,
+  Lead: CircleDot,
+  Propuesta_Enviada: Send,
+  Negociacion: Handshake,
+  Cerrado: CheckCircle2,
+  Perdido: XCircle,
 }
 
 export function Pipeline() {
@@ -24,7 +24,7 @@ export function Pipeline() {
   const [loading, setLoading] = useState(true)
   const [formOpen, setFormOpen] = useState(false)
   const [editing, setEditing] = useState<any | null>(null)
-  const [defaultStage, setDefaultStage] = useState('LEAD')
+  const [defaultStage, setDefaultStage] = useState('Lead')
 
   async function loadDeals() {
     setLoading(true)
@@ -75,7 +75,7 @@ export function Pipeline() {
           </p>
         </div>
         <button
-          onClick={() => { setEditing(null); setDefaultStage('LEAD'); setFormOpen(true) }}
+          onClick={() => { setEditing(null); setDefaultStage('Lead'); setFormOpen(true) }}
           className="flex items-center gap-2 bg-brand-red text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
         >
           <Plus size={16} /> Nuevo deal
@@ -112,7 +112,7 @@ export function Pipeline() {
                   ))}
                   {dealsByStage(stage.id).length === 0 && (
                     <p className="text-brand-gray-mid text-xs text-center py-4 px-2">
-                      {stage.id === 'LEAD'
+                      {stage.id === 'Lead'
                         ? 'Usá "Nuevo deal" para agregar tu primera oportunidad'
                         : `Sin deals en ${stage.label}`}
                     </p>

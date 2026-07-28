@@ -48,30 +48,20 @@ export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''
 export const HOTJAR_SCRIPT_SRC = process.env.NEXT_PUBLIC_HOTJAR_SCRIPT_SRC || ''
 
 export const DEAL_STAGES = [
-  { id: 'LEAD', label: 'Lead', color: '#3B82F6' },
-  { id: 'LLAMADA', label: 'Llamada', color: '#F59E0B' },
-  { id: 'EN_PROCESO', label: 'En proceso', color: '#F97316' },
-  { id: 'CERRADO', label: 'Cerrado', color: '#22C55E' },
-  { id: 'PERDIDO', label: 'Perdido', color: '#EF4444' },
+  { id: 'Lead', label: 'Lead', color: '#3B82F6' },
+  { id: 'Propuesta_Enviada', label: 'Propuesta enviada', color: '#F59E0B' },
+  { id: 'Negociacion', label: 'Negociación', color: '#F97316' },
+  { id: 'Cerrado', label: 'Cerrado', color: '#22C55E' },
+  { id: 'Perdido', label: 'Perdido', color: '#EF4444' },
 ] as const
 
 export const CONTACT_SOURCES = [
-  { id: 'WHATSAPP_MARKETING', label: 'WhatsApp Marketing' },
-  { id: 'REFERIDO', label: 'Referido' },
-  { id: 'INSTAGRAM', label: 'Instagram' },
-  { id: 'FERIA_EVENTO', label: 'Feria / Evento' },
-  { id: 'LLAMADA_DIRECTA', label: 'Llamada directa' },
-  { id: 'EXCEL', label: 'Excel' },
-  { id: 'OTRO', label: 'Otro' },
+  'WhatsApp', 'Instagram', 'Referido', 'Web', 'LinkedIn', 'Otro',
 ] as const
 
 export const SERVICE_TYPES = [
-  { id: 'AUTO_NUEVO', label: 'Auto nuevo' },
-  { id: 'AUTO_USADO', label: 'Auto usado' },
-  { id: 'SERVICIO_TECNICO', label: 'Servicio técnico' },
-  { id: 'FINANCIAMIENTO', label: 'Financiamiento' },
-  { id: 'PERMUTA', label: 'Permuta' },
-  { id: 'OTRO', label: 'Otro' },
+  'CRM', 'Landing', 'Ecommerce', 'Dashboard', 'Chatbot',
+  'Automatizacion', 'Web', 'API', 'Diagnostico',
 ] as const
 
 export const SERVICE_LEVELS = ['N1', 'N2', 'N3', 'N4'] as const

@@ -9,18 +9,19 @@ generator client {
 }
 
 model Contact {
-  id        String        @id @default(uuid())
-  name      String
-  email     String?
-  phone     String?
-  company   String?
-  source    ContactSource @default(OTRO)
-  status    ContactStatus @default(Activo)
-  leadScore Int           @default(0) @map("lead_score")
-  notes     String?
-  userId    String        @map("user_id")
-  createdAt DateTime      @default(now()) @map("created_at")
-  updatedAt DateTime      @updatedAt @map("updated_at")
+  id         String        @id @default(uuid())
+  businessId String        @default("claudia-shirley") @map("business_id")
+  name       String
+  email      String?
+  phone      String?
+  company    String?
+  source     ContactSource @default(Otro)
+  status     ContactStatus @default(Activo)
+  leadScore  Int           @default(0) @map("lead_score")
+  notes      String?
+  userId     String        @map("user_id")
+  createdAt  DateTime      @default(now()) @map("created_at")
+  updatedAt  DateTime      @updatedAt @map("updated_at")
 
   deals               Deal[]
   activities          Activity[]
@@ -32,12 +33,13 @@ model Contact {
 
 model Deal {
   id           String       @id @default(uuid())
+  businessId   String       @default("claudia-shirley") @map("business_id")
   contactId    String       @map("contact_id")
   title        String
   service      ServiceType
   level        ServiceLevel @default(N1)
   valueCop     BigInt       @default(0) @map("value_cop")
-  stage        DealStage    @default(LEAD)
+  stage        DealStage    @default(Lead)
   probability  Int          @default(10)
   nextFollowUp DateTime?    @map("next_follow_up")
   stagnatedAt  DateTime?    @map("stagnated_at")
@@ -57,6 +59,7 @@ model Deal {
 
 model Activity {
   id          String       @id @default(uuid())
+  businessId  String       @default("claudia-shirley") @map("business_id")
   dealId      String?      @map("deal_id")
   contactId   String?      @map("contact_id")
   type        ActivityType
@@ -73,6 +76,7 @@ model Activity {
 
 model CalendarEvent {
   id            String    @id @default(uuid())
+  businessId    String    @default("claudia-shirley") @map("business_id")
   dealId        String    @map("deal_id")
   googleEventId String?   @map("google_event_id")
   title         String
@@ -87,13 +91,14 @@ model CalendarEvent {
 }
 
 model AutomationLog {
-  id        String           @id @default(uuid())
-  autoType  String           @map("auto_type")
-  trigger   String
-  status    AutomationStatus @default(pending)
-  details   Json?
-  dealId    String?          @map("deal_id")
-  createdAt DateTime         @default(now()) @map("created_at")
+  id         String           @id @default(uuid())
+  businessId String           @default("claudia-shirley") @map("business_id")
+  autoType   String           @map("auto_type")
+  trigger    String
+  status     AutomationStatus @default(pending)
+  details    Json?
+  dealId     String?          @map("deal_id")
+  createdAt  DateTime         @default(now()) @map("created_at")
 
   deal Deal? @relation(fields: [dealId], references: [id])
 
@@ -167,13 +172,12 @@ model CampaignRecipient {
 }
 
 enum ContactSource {
-  WHATSAPP_MARKETING
-  REFERIDO
-  INSTAGRAM
-  FERIA_EVENTO
-  LLAMADA_DIRECTA
-  EXCEL
-  OTRO
+  WhatsApp
+  Instagram
+  Referido
+  Web
+  LinkedIn
+  Otro
 }
 
 enum ContactStatus {
@@ -184,12 +188,15 @@ enum ContactStatus {
 }
 
 enum ServiceType {
-  AUTO_NUEVO
-  AUTO_USADO
-  SERVICIO_TECNICO
-  FINANCIAMIENTO
-  PERMUTA
-  OTRO
+  CRM
+  Landing
+  Ecommerce
+  Dashboard
+  Chatbot
+  Automatizacion
+  Web
+  API
+  Diagnostico
 }
 
 enum ServiceLevel {
@@ -200,11 +207,11 @@ enum ServiceLevel {
 }
 
 enum DealStage {
-  LEAD
-  LLAMADA
-  EN_PROCESO
-  CERRADO
-  PERDIDO
+  Lead
+  Propuesta_Enviada
+  Negociacion
+  Cerrado
+  Perdido
 }
 
 enum ActivityType {

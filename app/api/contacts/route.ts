@@ -25,7 +25,7 @@ export async function POST(request: Request) {
       email: body.email || null,
       phone: body.phone || null,
       company: body.company || null,
-      source: body.source || 'OTRO',
+      source: body.source || 'Otro',
       status: body.status || 'Activo',
       userId,
     },

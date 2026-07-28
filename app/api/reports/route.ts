@@ -43,7 +43,7 @@ export async function GET() {
   allDeals.forEach((deal) => {
     const d = new Date(deal.updatedAt)
     const key = d.toLocaleDateString('es-CO', { month: 'short', year: '2-digit' })
-    if (deal.stage === 'CERRADO' && revenueByMonth[key] !== undefined) {
+    if (deal.stage === 'Cerrado' && revenueByMonth[key] !== undefined) {
       revenueByMonth[key] += Number(deal.valueCop)
     }
     if (dealsByMonth[key] !== undefined) {
@@ -81,8 +81,8 @@ export async function GET() {
 
   // Tasa de conversión
   const total = allDeals.length
-  const cerrados = allDeals.filter((d) => d.stage === 'CERRADO').length
-  const perdidos = allDeals.filter((d) => d.stage === 'PERDIDO').length
+  const cerrados = allDeals.filter((d) => d.stage === 'Cerrado').length
+  const perdidos = allDeals.filter((d) => d.stage === 'Perdido').length
   const conversionRate = total > 0 ? Math.round((cerrados / total) * 100) : 0
 
   return NextResponse.json({

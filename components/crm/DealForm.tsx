@@ -17,10 +17,10 @@ export function DealForm({ deal, defaultStage, onClose, onSaved }: DealFormProps
   const [form, setForm] = useState({
     contactId: deal?.contactId || '',
     title: deal?.title || '',
-    service: deal?.service || 'AUTO_NUEVO',
+    service: deal?.service || 'CRM',
     level: deal?.level || 'N1',
     valueCop: deal?.valueCop ? String(deal.valueCop) : String(PRICING_DEFAULTS.defaultDealValue),
-    stage: deal?.stage || defaultStage || 'LEAD',
+    stage: deal?.stage || defaultStage || 'Lead',
     nextFollowUp: deal?.nextFollowUp ? String(deal.nextFollowUp).slice(0, 10) : '',
   })
   const [saving, setSaving] = useState(false)
@@ -84,7 +84,7 @@ export function DealForm({ deal, defaultStage, onClose, onSaved }: DealFormProps
               onChange={(e) => setForm({ ...form, service: e.target.value })}
               className="w-full bg-brand-black border border-brand-gray-dark rounded-lg px-3 py-2 text-white text-sm"
             >
-              {SERVICE_TYPES.map((s) => (<option key={s.id} value={s.id}>{s.label}</option>))}
+              {SERVICE_TYPES.map((s) => (<option key={s} value={s}>{s}</option>))}
             </select>
             <select
               value={form.level}

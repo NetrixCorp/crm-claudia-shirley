@@ -12,10 +12,10 @@ export default async function DashboardPage() {
   const [leadsActivos, dealsAbiertos, dealsCerrados, followUpsHoy] = await Promise.all([
     db.contact.count({ where: { status: 'Activo' } }),
     db.deal.findMany({
-      where: { stage: { notIn: ['CERRADO', 'PERDIDO'] } },
+      where: { stage: { notIn: ['Cerrado', 'Perdido'] } },
       select: { valueCop: true },
     }),
-    db.deal.count({ where: { stage: 'CERRADO' } }),
+    db.deal.count({ where: { stage: 'Cerrado' } }),
     db.deal.count({ where: { nextFollowUp: { gte: startOfDay, lte: endOfDay } } }),
   ])
 
