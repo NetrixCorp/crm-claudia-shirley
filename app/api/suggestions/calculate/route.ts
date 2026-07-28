@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
-import { currentUser } from '@clerk/nextjs/server'
 import type { SuggestionRule } from '@prisma/client'
 import { db } from '@/lib/db'
+import { getBusinessId } from '@/lib/auth'
 import {
   calculateSuggestions,
   getDefaultRules,
@@ -24,17 +24,9 @@ interface ErrorResponse {
 
 export async function GET() {
   try {
-    const user = await currentUser()
-    if (!user) {
+    const businessId = await getBusinessId()
+    if (!businessId) {
       return NextResponse.json<ErrorResponse>({ error: 'No autorizado' }, { status: 401 })
-    }
-
-    const businessId = user.unsafeMetadata?.businessId
-    if (typeof businessId !== 'string' || businessId.length === 0) {
-      return NextResponse.json<ErrorResponse>(
-        { error: 'El usuario no tiene businessId configurado' },
-        { status: 400 }
-      )
     }
 
     let rules = await db.suggestionRule.findMany({

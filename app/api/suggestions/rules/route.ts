@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
-import { currentUser } from '@clerk/nextjs/server'
 import type { ActionType, DealStage, RulePriority } from '@prisma/client'
 import { db } from '@/lib/db'
+import { getBusinessId } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
 
@@ -19,13 +19,6 @@ interface RuleCreateInput {
   actionType: ActionType
   priority: RulePriority
   isActive?: boolean
-}
-
-async function getBusinessId(): Promise<string | null> {
-  const user = await currentUser()
-  if (!user) return null
-  const businessId = user.unsafeMetadata?.businessId
-  return typeof businessId === 'string' && businessId.length > 0 ? businessId : null
 }
 
 export async function GET() {
