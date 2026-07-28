@@ -1,6 +1,7 @@
 import { db } from '@/lib/db'
 import { formatCOP } from '@/lib/utils'
 import { KPICard } from '@/components/crm/KPICard'
+import { SuggestionPanel } from '@/components/suggestions/SuggestionPanel'
 
 export const dynamic = 'force-dynamic'
 
@@ -56,6 +57,7 @@ export default async function DashboardPage() {
           </div>
         </div>
       )}
+      <SuggestionPanel />
       <div className="grid grid-cols-4 gap-4">
         <KPICard label="Leads activos" value={String(leadsActivos)} />
         <KPICard label="Revenue pipeline" value={formatCOP(revenuePipeline)} />
