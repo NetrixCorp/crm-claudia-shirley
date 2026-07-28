@@ -12,10 +12,10 @@ export default async function DashboardPage() {
   const [leadsActivos, dealsAbiertos, dealsCerrados, followUpsHoy] = await Promise.all([
     db.contact.count({ where: { status: 'Activo' } }),
     db.deal.findMany({
-      where: { stage: { notIn: ['Cerrado', 'Perdido'] } },
+      where: { stage: { notIn: ['CERRADO', 'PERDIDO'] } },
       select: { valueCop: true },
     }),
-    db.deal.count({ where: { stage: 'Cerrado' } }),
+    db.deal.count({ where: { stage: 'CERRADO' } }),
     db.deal.count({ where: { nextFollowUp: { gte: startOfDay, lte: endOfDay } } }),
   ])
 
@@ -44,7 +44,7 @@ export default async function DashboardPage() {
             <div className="flex items-start gap-3">
               <span className="text-brand-red font-bold text-sm w-5 flex-shrink-0">2.</span>
               <p className="text-brand-gray-mid text-sm">
-                <span className="text-white font-medium">Creá un deal</span> — En &quot;Pipeline&quot;, usá el botón &quot;Nuevo deal&quot; para registrar la oportunidad de venta. El precio se llena automáticamente según el servicio y nivel.
+                <span className="text-white font-medium">Creá un deal</span> — En &quot;Pipeline&quot;, usá el botón &quot;Nuevo deal&quot; para registrar la oportunidad de venta y su valor.
               </p>
             </div>
             <div className="flex items-start gap-3">

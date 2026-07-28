@@ -10,9 +10,9 @@ export async function GET() {
   const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
 
   const [allDeals, leadsNuevos, dealsGanados] = await Promise.all([
-    db.deal.findMany({ where: { stage: { notIn: ['Cerrado', 'Perdido'] } } }),
+    db.deal.findMany({ where: { stage: { notIn: ['CERRADO', 'PERDIDO'] } } }),
     db.contact.count({ where: { createdAt: { gte: oneWeekAgo } } }),
-    db.deal.findMany({ where: { stage: 'Cerrado', updatedAt: { gte: oneWeekAgo } } }),
+    db.deal.findMany({ where: { stage: 'CERRADO', updatedAt: { gte: oneWeekAgo } } }),
   ])
 
   const revenuePipeline = allDeals.reduce((sum, d) => sum + Number(d.valueCop), 0)

@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { X } from 'lucide-react'
 import { SERVICE_TYPES, SERVICE_LEVELS, PRICING_DEFAULTS } from '@/lib/constants'
-import { formatCOP } from '@/lib/utils'
 import { trackEvent } from '@/lib/analytics'
 
 interface DealFormProps {
@@ -18,29 +17,18 @@ export function DealForm({ deal, defaultStage, onClose, onSaved }: DealFormProps
   const [form, setForm] = useState({
     contactId: deal?.contactId || '',
     title: deal?.title || '',
-    service: deal?.service || 'CRM',
+    service: deal?.service || 'AUTO_NUEVO',
     level: deal?.level || 'N1',
-    valueCop: deal?.valueCop ? String(deal.valueCop) : '',
-    stage: deal?.stage || defaultStage || 'Lead',
+    valueCop: deal?.valueCop ? String(deal.valueCop) : String(PRICING_DEFAULTS.defaultDealValue),
+    stage: deal?.stage || defaultStage || 'LEAD',
     nextFollowUp: deal?.nextFollowUp ? String(deal.nextFollowUp).slice(0, 10) : '',
   })
   const [saving, setSaving] = useState(false)
-  const lastSuggested = useRef<string>(deal ? '' : String(PRICING_DEFAULTS['CRM']['N1']))
   const dateInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     fetch('/api/contacts').then((r) => r.json()).then(setContacts)
   }, [])
-
-  useEffect(() => {
-    const suggestion = PRICING_DEFAULTS[form.service]?.[form.level]
-    if (suggestion === undefined) return
-    if (form.valueCop === '' || form.valueCop === lastSuggested.current) {
-      setForm((f) => ({ ...f, valueCop: String(suggestion) }))
-    }
-    lastSuggested.current = String(suggestion)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [form.service, form.level])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -58,7 +46,6 @@ export function DealForm({ deal, defaultStage, onClose, onSaved }: DealFormProps
   }
 
   const today = new Date().toISOString().slice(0, 10)
-  const suggested = PRICING_DEFAULTS[form.service]?.[form.level]
 
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50">
@@ -72,8 +59,7 @@ export function DealForm({ deal, defaultStage, onClose, onSaved }: DealFormProps
         <form onSubmit={handleSubmit} className="p-4 space-y-3">
           {!deal && (
             <p className="text-brand-gray-mid text-xs mb-3 leading-relaxed">
-              El precio se llena automáticamente según el servicio y nivel. Podés
-              modificarlo manualmente si hay un acuerdo especial con el cliente.
+              Registrá el valor del vehículo o servicio en {PRICING_DEFAULTS.currency}.
             </p>
           )}
           <select
@@ -98,7 +84,7 @@ export function DealForm({ deal, defaultStage, onClose, onSaved }: DealFormProps
               onChange={(e) => setForm({ ...form, service: e.target.value })}
               className="w-full bg-brand-black border border-brand-gray-dark rounded-lg px-3 py-2 text-white text-sm"
             >
-              {SERVICE_TYPES.map((s) => (<option key={s} value={s}>{s}</option>))}
+              {SERVICE_TYPES.map((s) => (<option key={s.id} value={s.id}>{s.label}</option>))}
             </select>
             <select
               value={form.level}
@@ -117,11 +103,6 @@ export function DealForm({ deal, defaultStage, onClose, onSaved }: DealFormProps
               onChange={(e) => setForm({ ...form, valueCop: e.target.value })}
               className="w-full bg-brand-black border border-brand-gray-dark rounded-lg px-3 py-2 text-white text-sm"
             />
-            {suggested !== undefined && (
-              <p className="text-brand-gray-mid text-xs mt-1">
-                Sugerido para {form.service} {form.level}: {formatCOP(suggested)} — editable
-              </p>
-            )}
           </div>
           <div>
             <label className="text-brand-gray-mid text-xs">Próximo seguimiento</label>

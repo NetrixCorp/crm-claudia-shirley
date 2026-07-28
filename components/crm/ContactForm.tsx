@@ -17,7 +17,7 @@ export function ContactForm({ contact, onClose, onSaved }: ContactFormProps) {
     email: contact?.email || '',
     phone: contact?.phone || '',
     company: contact?.company || '',
-    source: contact?.source || 'WhatsApp',
+    source: contact?.source || 'WHATSAPP_MARKETING',
     status: contact?.status || 'Activo',
   })
   const [saving, setSaving] = useState(false)
@@ -90,7 +90,7 @@ export function ContactForm({ contact, onClose, onSaved }: ContactFormProps) {
             className="w-full bg-brand-black border border-brand-gray-dark rounded-lg px-3 py-2 text-white text-sm"
           >
             {CONTACT_SOURCES.map((s) => (
-              <option key={s} value={s}>{s}</option>
+              <option key={s.id} value={s.id}>{s.label}</option>
             ))}
           </select>
           <button

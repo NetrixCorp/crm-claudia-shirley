@@ -14,7 +14,7 @@ model Contact {
   email     String?
   phone     String?
   company   String?
-  source    ContactSource @default(Otro)
+  source    ContactSource @default(OTRO)
   status    ContactStatus @default(Activo)
   leadScore Int           @default(0) @map("lead_score")
   notes     String?
@@ -22,8 +22,10 @@ model Contact {
   createdAt DateTime      @default(now()) @map("created_at")
   updatedAt DateTime      @updatedAt @map("updated_at")
 
-  deals      Deal[]
-  activities Activity[]
+  deals               Deal[]
+  activities          Activity[]
+  suggestionHistories SuggestionHistory[]
+  campaignRecipients  CampaignRecipient[]
 
   @@map("contacts")
 }
@@ -35,7 +37,7 @@ model Deal {
   service      ServiceType
   level        ServiceLevel @default(N1)
   valueCop     BigInt       @default(0) @map("value_cop")
-  stage        DealStage    @default(Lead)
+  stage        DealStage    @default(LEAD)
   probability  Int          @default(10)
   nextFollowUp DateTime?    @map("next_follow_up")
   stagnatedAt  DateTime?    @map("stagnated_at")
@@ -98,13 +100,80 @@ model AutomationLog {
   @@map("automation_logs")
 }
 
+model SuggestionRule {
+  id              String       @id @default(uuid())
+  businessId      String       @map("business_id")
+  name            String
+  description     String?
+  stage           DealStage
+  daysMinContact  Int          @map("days_min_contact")
+  daysMaxContact  Int          @default(-1) @map("days_max_contact")
+  actionText      String       @map("action_text")
+  actionType      ActionType   @map("action_type")
+  priority        RulePriority
+  isActive        Boolean      @default(true) @map("is_active")
+  orderNumber     Int          @map("order_number")
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+
+  history SuggestionHistory[]
+
+  @@map("suggestion_rules")
+}
+
+model SuggestionHistory {
+  id          String   @id @default(uuid())
+  businessId  String   @map("business_id")
+  contactId   String   @map("contact_id")
+  ruleId      String   @map("rule_id")
+  actionTaken String   @map("action_taken")
+  wasHelpful  Boolean? @map("was_helpful")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  contact Contact        @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  rule    SuggestionRule @relation(fields: [ruleId], references: [id], onDelete: Cascade)
+
+  @@map("suggestion_history")
+}
+
+model WhatsappCampaign {
+  id         String   @id @default(uuid())
+  businessId String   @map("business_id")
+  name       String
+  message    String
+  segment    String
+  status     String
+  sentCount  Int      @default(0) @map("sent_count")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  recipients CampaignRecipient[]
+
+  @@map("whatsapp_campaigns")
+}
+
+model CampaignRecipient {
+  id         String    @id @default(uuid())
+  campaignId String    @map("campaign_id")
+  contactId  String    @map("contact_id")
+  phone      String
+  sentAt     DateTime? @map("sent_at")
+  status     String
+
+  campaign WhatsappCampaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  contact  Contact          @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  @@map("campaign_recipients")
+}
+
 enum ContactSource {
-  WhatsApp
-  Instagram
-  Referido
-  Web
-  LinkedIn
-  Otro
+  WHATSAPP_MARKETING
+  REFERIDO
+  INSTAGRAM
+  FERIA_EVENTO
+  LLAMADA_DIRECTA
+  EXCEL
+  OTRO
 }
 
 enum ContactStatus {
@@ -115,15 +184,12 @@ enum ContactStatus {
 }
 
 enum ServiceType {
-  CRM
-  Landing
-  Ecommerce
-  Dashboard
-  Chatbot
-  Automatizacion
-  Web
-  API
-  Diagnostico
+  AUTO_NUEVO
+  AUTO_USADO
+  SERVICIO_TECNICO
+  FINANCIAMIENTO
+  PERMUTA
+  OTRO
 }
 
 enum ServiceLevel {
@@ -134,11 +200,11 @@ enum ServiceLevel {
 }
 
 enum DealStage {
-  Lead
-  Propuesta_Enviada
-  Negociacion
-  Cerrado
-  Perdido
+  LEAD
+  LLAMADA
+  EN_PROCESO
+  CERRADO
+  PERDIDO
 }
 
 enum ActivityType {
@@ -161,4 +227,17 @@ enum AutomationStatus {
   pending
   success
   failed
+}
+
+enum ActionType {
+  CALL
+  WHATSAPP_MESSAGE
+  REACTIVATE
+  SEND_PROPOSAL
+}
+
+enum RulePriority {
+  HIGH
+  MEDIUM
+  LOW
 }
