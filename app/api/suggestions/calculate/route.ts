@@ -96,12 +96,19 @@ export async function GET() {
  * reglas por defecto deben persistirse antes de poder registrar historial.
  */
 async function seedDefaultRules(businessId: string): Promise<SuggestionRule[]> {
-  const defaults = getDefaultRules().map(
-    ({ id, createdAt, updatedAt, businessId: _defaultBusinessId, ...rest }) => ({
-      ...rest,
-      businessId,
-    })
-  )
+  const defaults = getDefaultRules().map((rule) => ({
+    businessId,
+    name: rule.name,
+    description: rule.description,
+    stage: rule.stage,
+    daysMinContact: rule.daysMinContact,
+    daysMaxContact: rule.daysMaxContact,
+    actionText: rule.actionText,
+    actionType: rule.actionType,
+    priority: rule.priority,
+    isActive: rule.isActive,
+    orderNumber: rule.orderNumber,
+  }))
 
   await db.suggestionRule.createMany({ data: defaults })
 
