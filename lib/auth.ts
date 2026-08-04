@@ -6,7 +6,7 @@ export async function getBusinessId(): Promise<string | null> {
   console.error('user:', user)
   if (!user) return null
 
-  const businessId = user.unsafeMetadata?.businessId
+  const businessId = user.publicMetadata?.businessId
   console.error('businessId:', businessId)
   return typeof businessId === 'string' && businessId.length > 0 ? businessId : null
 }
