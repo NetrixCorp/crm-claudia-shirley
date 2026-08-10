@@ -20,7 +20,7 @@ export function DealForm({ deal, defaultStage, onClose, onSaved }: DealFormProps
     service: deal?.service || 'CRM',
     level: deal?.level || 'N1',
     valueCop: deal?.valueCop ? String(deal.valueCop) : String(PRICING_DEFAULTS.defaultDealValue),
-    stage: deal?.stage || defaultStage || 'Lead',
+    stage: deal?.stage || defaultStage || 'LEAD',
     nextFollowUp: deal?.nextFollowUp ? String(deal.nextFollowUp).slice(0, 10) : '',
   })
   const [saving, setSaving] = useState(false)

@@ -28,7 +28,7 @@ const PRIORITIES: { id: RulePriority; label: string }[] = [
 export function RuleEditor({ rule, onClose, onSaved }: RuleEditorProps) {
   const [name, setName] = useState(rule?.name ?? '')
   const [description, setDescription] = useState(rule?.description ?? '')
-  const [stage, setStage] = useState<DealStage>(rule?.stage ?? 'Lead')
+  const [stage, setStage] = useState<DealStage>(rule?.stage ?? 'LEAD')
   const [daysMinContact, setDaysMinContact] = useState(String(rule?.daysMinContact ?? 0))
   const [daysMaxContact, setDaysMaxContact] = useState(String(rule?.daysMaxContact ?? -1))
   const [actionText, setActionText] = useState(rule?.actionText ?? '')

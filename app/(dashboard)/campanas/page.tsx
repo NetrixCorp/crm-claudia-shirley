@@ -22,10 +22,10 @@ const STATUS_STYLES: Record<CampaignStatus, string> = {
 
 const SEGMENT_LABELS: Record<string, string> = {
   ALL: 'Todos los leads',
-  Lead: 'Solo Lead',
-  Negociacion: 'Solo Negociación',
-  Cerrado: 'Solo Cerrado',
-  Perdido: 'Solo Perdido',
+  LEAD: 'Solo Lead',
+  EN_PROCESO: 'Solo En proceso',
+  CERRADO: 'Solo Cerrado',
+  PERDIDO: 'Solo Perdido',
 }
 
 export default function CampanasPage() {

@@ -7,10 +7,10 @@ import type { CampaignSegment } from '@/types/campaign'
 
 const SEGMENTS: { id: CampaignSegment; label: string }[] = [
   { id: 'ALL', label: 'Todos los leads' },
-  { id: 'Lead', label: 'Solo Lead' },
-  { id: 'Negociacion', label: 'Solo Negociación' },
-  { id: 'Cerrado', label: 'Solo Cerrado' },
-  { id: 'Perdido', label: 'Solo Perdido' },
+  { id: 'LEAD', label: 'Solo Lead' },
+  { id: 'EN_PROCESO', label: 'Solo En proceso' },
+  { id: 'CERRADO', label: 'Solo Cerrado' },
+  { id: 'PERDIDO', label: 'Solo Perdido' },
 ]
 
 interface PreviewResponse {

@@ -1,4 +1,4 @@
-export type CampaignSegment = 'ALL' | 'Lead' | 'Negociacion' | 'Cerrado' | 'Perdido'
+export type CampaignSegment = 'ALL' | 'LEAD' | 'EN_PROCESO' | 'CERRADO' | 'PERDIDO'
 export type CampaignStatus = 'DRAFT' | 'SENDING' | 'COMPLETED'
 
 export interface CampaignData {

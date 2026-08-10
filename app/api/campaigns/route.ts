@@ -4,7 +4,7 @@ import { getBusinessId } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
 
-const VALID_SEGMENTS = ['ALL', 'Lead', 'Negociacion', 'Cerrado', 'Perdido']
+const VALID_SEGMENTS = ['ALL', 'LEAD', 'EN_PROCESO', 'CERRADO', 'PERDIDO']
 
 interface CampaignCreateInput {
   name: string

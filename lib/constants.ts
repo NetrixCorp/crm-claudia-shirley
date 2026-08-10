@@ -45,22 +45,22 @@ export const COLORS = {
 // Valores hex de lib/constants.ts#DEAL_STAGES, para librerías como Recharts
 // que necesitan el color literal (no aceptan clases de Tailwind).
 export const STAGE_COLORS_HEX: Record<string, string> = {
-  Lead: '#3B82F6',
-  Propuesta_Enviada: '#F59E0B',
-  Negociacion: '#F97316',
-  Cerrado: '#10B981',
-  Perdido: '#EF4444',
+  LEAD: '#3B82F6',
+  LLAMADA: '#F59E0B',
+  EN_PROCESO: '#F97316',
+  CERRADO: '#10B981',
+  PERDIDO: '#EF4444',
 }
 
 export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''
 export const HOTJAR_SCRIPT_SRC = process.env.NEXT_PUBLIC_HOTJAR_SCRIPT_SRC || ''
 
 export const DEAL_STAGES = [
-  { id: 'Lead', label: 'Lead', color: '#3B82F6' },
-  { id: 'Propuesta_Enviada', label: 'Propuesta enviada', color: '#F59E0B' },
-  { id: 'Negociacion', label: 'Negociación', color: '#F97316' },
-  { id: 'Cerrado', label: 'Cerrado', color: '#10B981' },
-  { id: 'Perdido', label: 'Perdido', color: '#EF4444' },
+  { id: 'LEAD', label: 'Lead', color: '#3B82F6' },
+  { id: 'LLAMADA', label: 'Llamada', color: '#F59E0B' },
+  { id: 'EN_PROCESO', label: 'En proceso', color: '#F97316' },
+  { id: 'CERRADO', label: 'Cerrado', color: '#10B981' },
+  { id: 'PERDIDO', label: 'Perdido', color: '#EF4444' },
 ] as const
 
 export const CONTACT_SOURCES = [

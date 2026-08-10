@@ -17,13 +17,13 @@ function parseLine(line: string): NewLead {
   const trimmed = line.trim()
 
   if (!trimmed) {
-    return { name: '', phone: '', stage: 'Lead', source: 'WhatsApp', needsReview: true }
+    return { name: '', phone: '', stage: 'LEAD', source: 'WhatsApp', needsReview: true }
   }
 
   const match = trimmed.match(PHONE_PATTERN)
 
   if (!match || match.index === undefined) {
-    return { name: trimmed, phone: '', stage: 'Lead', source: 'WhatsApp', needsReview: true }
+    return { name: trimmed, phone: '', stage: 'LEAD', source: 'WhatsApp', needsReview: true }
   }
 
   const rawPhone = match[0]
@@ -37,7 +37,7 @@ function parseLine(line: string): NewLead {
   return {
     name: name || trimmed,
     phone: digits,
-    stage: 'Lead',
+    stage: 'LEAD',
     source: 'WhatsApp',
     needsReview,
   }

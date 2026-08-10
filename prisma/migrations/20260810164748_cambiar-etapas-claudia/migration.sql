@@ -1,0 +1,5 @@
+ALTER TYPE "DealStage" RENAME VALUE 'Lead' TO 'LEAD';
+ALTER TYPE "DealStage" RENAME VALUE 'Propuesta_Enviada' TO 'LLAMADA';
+ALTER TYPE "DealStage" RENAME VALUE 'Negociacion' TO 'EN_PROCESO';
+ALTER TYPE "DealStage" RENAME VALUE 'Cerrado' TO 'CERRADO';
+ALTER TYPE "DealStage" RENAME VALUE 'Perdido' TO 'PERDIDO';

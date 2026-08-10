@@ -39,7 +39,7 @@ model Deal {
   service      ServiceType
   level        ServiceLevel @default(N1)
   valueCop     BigInt       @default(0) @map("value_cop")
-  stage        DealStage    @default(Lead)
+  stage        DealStage    @default(LEAD)
   probability  Int          @default(10)
   nextFollowUp DateTime?    @map("next_follow_up")
   stagnatedAt  DateTime?    @map("stagnated_at")
@@ -207,11 +207,11 @@ enum ServiceLevel {
 }
 
 enum DealStage {
-  Lead
-  Propuesta_Enviada
-  Negociacion
-  Cerrado
-  Perdido
+  LEAD
+  LLAMADA
+  EN_PROCESO
+  CERRADO
+  PERDIDO
 }
 
 enum ActivityType {

@@ -89,10 +89,10 @@ export function calculateSuggestions(
 
 /**
  * 6 reglas por defecto. `stage` se mapea a los valores compartidos del enum
- * DealStage (Lead, Propuesta_Enviada, Negociacion, Cerrado, Perdido) para no
+ * DealStage (LEAD, LLAMADA, EN_PROCESO, CERRADO, PERDIDO) para no
  * duplicar el enum de crm-interno:
- *   - "Llamada sin seguimiento" -> Propuesta_Enviada
- *   - "En proceso sin contacto" -> Negociacion
+ *   - "Llamada sin seguimiento" -> LLAMADA
+ *   - "En proceso sin contacto" -> EN_PROCESO
  */
 export function getDefaultRules(): SuggestionRule[] {
   const now = new Date()
@@ -111,7 +111,7 @@ export function getDefaultRules(): SuggestionRule[] {
       id: 'default-1',
       name: 'Lead nuevo',
       description: 'Lead recién creado, todavía sin llamada de bienvenida.',
-      stage: 'Lead' as DealStage,
+      stage: 'LEAD' as DealStage,
       daysMinContact: 0,
       daysMaxContact: 1,
       actionText: 'Llamar hoy',
@@ -124,7 +124,7 @@ export function getDefaultRules(): SuggestionRule[] {
       id: 'default-2',
       name: 'Llamada sin seguimiento',
       description: 'Se envió propuesta pero no hay seguimiento hace 3+ días.',
-      stage: 'Propuesta_Enviada' as DealStage,
+      stage: 'LLAMADA' as DealStage,
       daysMinContact: 3,
       daysMaxContact: -1,
       actionText: 'Retomar contacto',
@@ -137,7 +137,7 @@ export function getDefaultRules(): SuggestionRule[] {
       id: 'default-3',
       name: 'En proceso sin contacto',
       description: 'En negociación sin contacto hace 5+ días.',
-      stage: 'Negociacion' as DealStage,
+      stage: 'EN_PROCESO' as DealStage,
       daysMinContact: 5,
       daysMaxContact: -1,
       actionText: 'Enviar propuesta',
@@ -150,7 +150,7 @@ export function getDefaultRules(): SuggestionRule[] {
       id: 'default-4',
       name: 'Lead abandonado',
       description: 'Lead sin contacto hace 7+ días, riesgo de perderlo.',
-      stage: 'Lead' as DealStage,
+      stage: 'LEAD' as DealStage,
       daysMinContact: 7,
       daysMaxContact: -1,
       actionText: 'Recuperar urgente',
@@ -163,7 +163,7 @@ export function getDefaultRules(): SuggestionRule[] {
       id: 'default-5',
       name: 'Cerrado inactivo',
       description: 'Cliente cerrado hace 45+ días, posible cambio de auto.',
-      stage: 'Cerrado' as DealStage,
+      stage: 'CERRADO' as DealStage,
       daysMinContact: 45,
       daysMaxContact: -1,
       actionText: 'Reactivar cambio de auto',
@@ -176,7 +176,7 @@ export function getDefaultRules(): SuggestionRule[] {
       id: 'default-6',
       name: 'Perdido',
       description: 'Deal perdido hace 60+ días, vale la pena reintentar.',
-      stage: 'Perdido' as DealStage,
+      stage: 'PERDIDO' as DealStage,
       daysMinContact: 60,
       daysMaxContact: -1,
       actionText: 'Reintentar contacto',

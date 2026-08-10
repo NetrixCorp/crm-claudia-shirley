@@ -5,7 +5,7 @@ import { getBusinessId } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
 
-const VALID_STAGES: DealStage[] = ['Lead', 'Propuesta_Enviada', 'Negociacion', 'Cerrado', 'Perdido']
+const VALID_STAGES: DealStage[] = ['LEAD', 'LLAMADA', 'EN_PROCESO', 'CERRADO', 'PERDIDO']
 const VALID_ACTION_TYPES: ActionType[] = ['CALL', 'WHATSAPP_MESSAGE', 'REACTIVATE', 'SEND_PROPOSAL']
 const VALID_PRIORITIES: RulePriority[] = ['HIGH', 'MEDIUM', 'LOW']
 

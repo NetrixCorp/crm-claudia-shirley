@@ -19,7 +19,7 @@ export async function GET() {
     }),
     db.deal.findMany({
       where: {
-        stage: { notIn: ['Cerrado', 'Perdido'] },
+        stage: { notIn: ['CERRADO', 'PERDIDO'] },
         updatedAt: { lt: stagnationCutoff },
       },
       include: { contact: true },
