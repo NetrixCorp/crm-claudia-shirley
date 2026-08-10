@@ -8,5 +8,6 @@ export interface CampaignData {
   segment: CampaignSegment
   status: CampaignStatus
   sentCount: number
+  failedCount: number
   createdAt: string
 }

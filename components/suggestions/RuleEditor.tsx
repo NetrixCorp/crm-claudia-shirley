@@ -91,10 +91,10 @@ export function RuleEditor({ rule, onClose, onSaved }: RuleEditorProps) {
 
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50">
-      <div className="bg-white border border-brand-light rounded-lg w-full max-w-md max-h-[90vh] overflow-y-auto">
-        <div className="flex items-center justify-between p-4 border-b border-brand-light">
-          <h2 className="text-brand-text font-semibold">{rule ? 'Editar regla' : 'Nueva regla'}</h2>
-          <button onClick={onClose} className="text-brand-muted hover:text-brand-text">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg w-full max-w-md max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700">
+          <h2 className="text-slate-900 dark:text-white font-semibold">{rule ? 'Editar regla' : 'Nueva regla'}</h2>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-900 dark:hover:text-white">
             <X size={20} />
           </button>
         </div>
@@ -105,18 +105,18 @@ export function RuleEditor({ rule, onClose, onSaved }: RuleEditorProps) {
           )}
 
           <div>
-            <label className="text-brand-muted text-xs">Nombre</label>
+            <label className="text-slate-500 dark:text-slate-400 text-xs">Nombre</label>
             <input
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Ej: Lead nuevo sin llamar"
-              className="w-full mt-1 bg-brand-light border border-brand-light rounded-lg px-3 py-2 text-brand-text text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
+              className="w-full mt-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
             />
           </div>
 
           <div>
-            <label className="text-brand-muted text-xs">Descripción (opcional)</label>
+            <label className="text-slate-500 dark:text-slate-400 text-xs">Descripción (opcional)</label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -127,11 +127,11 @@ export function RuleEditor({ rule, onClose, onSaved }: RuleEditorProps) {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-brand-muted text-xs">Etapa</label>
+              <label className="text-slate-500 dark:text-slate-400 text-xs">Etapa</label>
               <select
                 value={stage}
                 onChange={(e) => setStage(e.target.value as DealStage)}
-                className="w-full mt-1 bg-brand-light border border-brand-light rounded-lg px-3 py-2 text-brand-text text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
+                className="w-full mt-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
               >
                 {DEAL_STAGES.map((s) => (
                   <option key={s.id} value={s.id}>{s.label}</option>
@@ -139,11 +139,11 @@ export function RuleEditor({ rule, onClose, onSaved }: RuleEditorProps) {
               </select>
             </div>
             <div>
-              <label className="text-brand-muted text-xs">Prioridad</label>
+              <label className="text-slate-500 dark:text-slate-400 text-xs">Prioridad</label>
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as RulePriority)}
-                className="w-full mt-1 bg-brand-light border border-brand-light rounded-lg px-3 py-2 text-brand-text text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
+                className="w-full mt-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
               >
                 {PRIORITIES.map((p) => (
                   <option key={p.id} value={p.id}>{p.label}</option>
@@ -154,45 +154,45 @@ export function RuleEditor({ rule, onClose, onSaved }: RuleEditorProps) {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-brand-muted text-xs">Días mínimo sin contacto</label>
+              <label className="text-slate-500 dark:text-slate-400 text-xs">Días mínimo sin contacto</label>
               <input
                 required
                 type="number"
                 min={0}
                 value={daysMinContact}
                 onChange={(e) => setDaysMinContact(e.target.value)}
-                className="w-full mt-1 bg-brand-light border border-brand-light rounded-lg px-3 py-2 text-brand-text text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
+                className="w-full mt-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
               />
             </div>
             <div>
-              <label className="text-brand-muted text-xs">Días máximo (-1 = sin límite)</label>
+              <label className="text-slate-500 dark:text-slate-400 text-xs">Días máximo (-1 = sin límite)</label>
               <input
                 required
                 type="number"
                 value={daysMaxContact}
                 onChange={(e) => setDaysMaxContact(e.target.value)}
-                className="w-full mt-1 bg-brand-light border border-brand-light rounded-lg px-3 py-2 text-brand-text text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
+                className="w-full mt-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
               />
             </div>
           </div>
 
           <div>
-            <label className="text-brand-muted text-xs">Acción sugerida</label>
+            <label className="text-slate-500 dark:text-slate-400 text-xs">Acción sugerida</label>
             <input
               required
               value={actionText}
               onChange={(e) => setActionText(e.target.value)}
               placeholder="Ej: Llamar hoy"
-              className="w-full mt-1 bg-brand-light border border-brand-light rounded-lg px-3 py-2 text-brand-text text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
+              className="w-full mt-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
             />
           </div>
 
           <div>
-            <label className="text-brand-muted text-xs">Tipo de acción</label>
+            <label className="text-slate-500 dark:text-slate-400 text-xs">Tipo de acción</label>
             <select
               value={actionType}
               onChange={(e) => setActionType(e.target.value as ActionType)}
-              className="w-full mt-1 bg-brand-light border border-brand-light rounded-lg px-3 py-2 text-brand-text text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
+              className="w-full mt-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"
             >
               {ACTION_TYPES.map((a) => (
                 <option key={a.id} value={a.id}>{a.label}</option>
@@ -200,12 +200,12 @@ export function RuleEditor({ rule, onClose, onSaved }: RuleEditorProps) {
             </select>
           </div>
 
-          <label className="flex items-center gap-2 text-brand-text text-sm">
+          <label className="flex items-center gap-2 text-slate-900 dark:text-white text-sm">
             <input
               type="checkbox"
               checked={isActive}
               onChange={(e) => setIsActive(e.target.checked)}
-              className="rounded border-brand-light text-brand-primary focus:ring-brand-accent"
+              className="rounded border-slate-300 dark:border-slate-600 text-brand-primary focus:ring-brand-accent"
             />
             Regla activa
           </label>
@@ -214,7 +214,7 @@ export function RuleEditor({ rule, onClose, onSaved }: RuleEditorProps) {
             <button
               type="button"
               onClick={onClose}
-              className="text-brand-muted hover:text-brand-text text-sm px-4 py-2"
+              className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm px-4 py-2"
             >
               Cancelar
             </button>

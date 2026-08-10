@@ -41,24 +41,23 @@ export default function ReglasPage() {
     <div>
       <div className="flex items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-brand-text">Reglas de sugerencias</h1>
-          <p className="text-brand-muted text-sm max-w-xl mt-1">
-            Estas reglas le dicen al sistema cuándo avisarte que un cliente necesita
-            atención — por ejemplo, cuando un lead lleva varios días sin que lo llames.
-            Se revisan en orden de arriba hacia abajo: apenas una regla aplica para un
-            cliente, esa es la que se sugiere.
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Configuración de sugerencias</h1>
+          <p className="text-slate-600 dark:text-slate-400 text-sm max-w-xl mt-1">
+            Personalizá las reglas que determinan qué acciones se sugieren. Por ejemplo,
+            cuando un lead lleva varios días sin que lo llames. Se revisan en orden de
+            arriba hacia abajo: apenas una regla aplica para un cliente, esa es la que se sugiere.
           </p>
         </div>
         <button
           onClick={() => { setEditing(null); setEditorOpen(true) }}
           className="flex items-center gap-2 bg-brand-primary text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-brand-accent transition-colors flex-shrink-0"
         >
-          <Plus size={16} /> Nueva regla
+          <Plus size={16} /> Crear nueva regla
         </button>
       </div>
 
       {loading ? (
-        <p className="text-brand-muted text-sm">Cargando...</p>
+        <p className="text-slate-500 text-sm">Cargando...</p>
       ) : (
         <RulesList
           rules={rules}

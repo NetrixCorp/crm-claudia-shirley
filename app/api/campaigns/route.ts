@@ -22,9 +22,15 @@ export async function GET() {
     const campaigns = await db.whatsappCampaign.findMany({
       where: { businessId },
       orderBy: { createdAt: 'desc' },
+      include: { recipients: { select: { status: true } } },
     })
 
-    return NextResponse.json(campaigns)
+    const withCounts = campaigns.map(({ recipients, ...campaign }) => ({
+      ...campaign,
+      failedCount: recipients.filter((r) => r.status === 'FAILED').length,
+    }))
+
+    return NextResponse.json(withCounts)
   } catch (error) {
     console.error('Error al listar campañas:', error)
     return NextResponse.json({ error: 'Error al listar campañas' }, { status: 500 })
