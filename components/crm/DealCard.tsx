@@ -19,14 +19,14 @@ export function DealCard({ deal, index, onClick }: DealCardProps) {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           onClick={onClick}
-          className={`bg-brand-black border border-brand-gray-dark rounded-lg p-3 mb-2 cursor-pointer hover:border-brand-gray-mid transition-colors ${
+          className={`bg-slate-950 border border-slate-800 rounded-lg p-3 mb-2 cursor-pointer hover:border-slate-600 transition-colors ${
             snapshot.isDragging ? 'opacity-70' : ''
           }`}
         >
           <p className="text-white text-sm font-medium truncate">{deal.title}</p>
-          <p className="text-brand-gray-mid text-xs mt-0.5">{deal.contact?.name}</p>
+          <p className="text-slate-500 text-xs mt-0.5">{deal.contact?.name}</p>
           <div className="flex items-center justify-between mt-2">
-            <span className="text-brand-red text-sm font-semibold">{formatCOP(deal.valueCop)}</span>
+            <span className="text-brand-accent text-sm font-semibold">{formatCOP(deal.valueCop)}</span>
             <div className="flex items-center gap-2">
               {deal.contact?.phone && (
                 <a
@@ -34,13 +34,13 @@ export function DealCard({ deal, index, onClick }: DealCardProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="text-brand-gray-mid hover:text-green-500"
+                  className="text-slate-500 hover:text-green-500"
                   title="Escribir por WhatsApp"
                 >
                   <FaWhatsapp size={14} />
                 </a>
               )}
-              <span className="text-brand-gray-mid text-xs">{formatRelativeDate(deal.updatedAt)}</span>
+              <span className="text-slate-500 text-xs">{formatRelativeDate(deal.updatedAt)}</span>
             </div>
           </div>
         </div>

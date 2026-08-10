@@ -64,7 +64,7 @@ function CalendarButton({ dealId, contactEmail }: { dealId: string; contactEmail
     <>
       <button
         onClick={() => setOpen(true)}
-        className="flex items-center gap-2 text-sm bg-brand-black-soft border border-brand-gray-dark text-brand-gray-mid hover:text-white px-3 py-2 rounded-lg transition-colors"
+        className="flex items-center gap-2 text-sm bg-slate-900 border border-slate-800 text-slate-500 hover:text-white px-3 py-2 rounded-lg transition-colors"
       >
         <Calendar size={16} /> Agendar reunión
       </button>
@@ -94,10 +94,10 @@ function CalendarButton({ dealId, contactEmail }: { dealId: string; contactEmail
 
       {open && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50">
-          <div className="bg-brand-black-soft border border-brand-gray-dark rounded-lg w-full max-w-sm">
-            <div className="flex items-center justify-between p-4 border-b border-brand-gray-dark">
+          <div className="bg-slate-900 border border-slate-800 rounded-lg w-full max-w-sm">
+            <div className="flex items-center justify-between p-4 border-b border-slate-800">
               <h3 className="text-white font-semibold text-sm">Nueva reunión en Google Calendar</h3>
-              <button onClick={() => setOpen(false)} className="text-brand-gray-mid hover:text-white">
+              <button onClick={() => setOpen(false)} className="text-slate-500 hover:text-white">
                 <X size={16} />
               </button>
             </div>
@@ -107,17 +107,17 @@ function CalendarButton({ dealId, contactEmail }: { dealId: string; contactEmail
                 placeholder="Título de la reunión"
                 value={form.title}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
-                className="w-full bg-brand-black border border-brand-gray-dark rounded-lg px-3 py-2 text-white text-sm"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white text-sm"
               />
               <textarea
                 placeholder="Descripción (opcional)"
                 value={form.description}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
                 rows={2}
-                className="w-full bg-brand-black border border-brand-gray-dark rounded-lg px-3 py-2 text-white text-sm resize-none"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white text-sm resize-none"
               />
               <div>
-                <label className="text-brand-gray-mid text-xs">Fecha</label>
+                <label className="text-slate-500 text-xs">Fecha</label>
                 <input
                   required
                   type="date"
@@ -125,39 +125,39 @@ function CalendarButton({ dealId, contactEmail }: { dealId: string; contactEmail
                   value={form.date}
                   onClick={(e) => (e.target as HTMLInputElement).showPicker?.()}
                   onChange={(e) => setForm({ ...form, date: e.target.value })}
-                  className="w-full bg-brand-black border border-brand-gray-dark rounded-lg px-3 py-2 text-white text-sm mt-1 cursor-pointer"
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white text-sm mt-1 cursor-pointer"
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-brand-gray-mid text-xs">Hora inicio</label>
+                  <label className="text-slate-500 text-xs">Hora inicio</label>
                   <input
                     required
                     type="time"
                     value={form.startTime}
                     onChange={(e) => setForm({ ...form, startTime: e.target.value })}
-                    className="w-full bg-brand-black border border-brand-gray-dark rounded-lg px-3 py-2 text-white text-sm mt-1"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white text-sm mt-1"
                   />
                 </div>
                 <div>
-                  <label className="text-brand-gray-mid text-xs">Hora fin</label>
+                  <label className="text-slate-500 text-xs">Hora fin</label>
                   <input
                     required
                     type="time"
                     value={form.endTime}
                     onChange={(e) => setForm({ ...form, endTime: e.target.value })}
-                    className="w-full bg-brand-black border border-brand-gray-dark rounded-lg px-3 py-2 text-white text-sm mt-1"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white text-sm mt-1"
                   />
                 </div>
               </div>
-              <p className="text-brand-gray-mid text-xs">
+              <p className="text-slate-500 text-xs">
                 Si es la primera vez, te va a pedir conectar tu cuenta de Google.
                 {contactEmail && ` Se invitará automáticamente a ${contactEmail}.`}
               </p>
               <button
                 type="submit"
                 disabled={creating}
-                className="w-full bg-brand-red text-white font-semibold py-2 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 text-sm"
+                className="w-full bg-brand-accent text-white font-semibold py-2 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 text-sm"
               >
                 {creating ? 'Creando...' : 'Crear evento en Google Calendar'}
               </button>
@@ -193,7 +193,7 @@ export default function DealDetailPage() {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <p className="text-brand-gray-mid text-sm">Cargando...</p>
+      <p className="text-slate-500 text-sm">Cargando...</p>
     </div>
   )
 
@@ -207,13 +207,13 @@ export default function DealDetailPage() {
       <div className="flex items-center gap-4 mb-6">
         <button
           onClick={() => router.back()}
-          className="text-brand-gray-mid hover:text-white transition-colors"
+          className="text-slate-500 hover:text-white transition-colors"
         >
           <ArrowLeft size={20} />
         </button>
         <div className="flex-1">
           <h1 className="text-2xl font-bold text-white">{deal.title}</h1>
-          <p className="text-brand-gray-mid text-sm">{deal.contact.name} · {deal.contact.company || '—'}</p>
+          <p className="text-slate-500 text-sm">{deal.contact.name} · {deal.contact.company || '—'}</p>
         </div>
         <div className="flex gap-2">
           {deal.contact.phone && (
@@ -221,7 +221,7 @@ export default function DealDetailPage() {
               href={buildWhatsAppLink(deal.contact.phone, `Hola ${deal.contact.name}, te escribo sobre ${deal.title}.`)}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm bg-brand-black-soft border border-brand-gray-dark text-brand-gray-mid hover:text-green-500 hover:border-green-500 px-3 py-2 rounded-lg transition-colors"
+              className="flex items-center gap-2 text-sm bg-slate-900 border border-slate-800 text-slate-500 hover:text-green-500 hover:border-green-500 px-3 py-2 rounded-lg transition-colors"
             >
               <FaWhatsapp size={16} /> WhatsApp
             </a>
@@ -232,13 +232,13 @@ export default function DealDetailPage() {
           />
           <button
             onClick={() => setEditOpen(true)}
-            className="flex items-center gap-2 text-sm bg-brand-black-soft border border-brand-gray-dark text-brand-gray-mid hover:text-white px-3 py-2 rounded-lg transition-colors"
+            className="flex items-center gap-2 text-sm bg-slate-900 border border-slate-800 text-slate-500 hover:text-white px-3 py-2 rounded-lg transition-colors"
           >
             <Pencil size={16} /> Editar
           </button>
           <button
             onClick={handleDelete}
-            className="flex items-center gap-2 text-sm bg-brand-black-soft border border-brand-gray-dark text-brand-gray-mid hover:text-brand-red hover:border-brand-red px-3 py-2 rounded-lg transition-colors"
+            className="flex items-center gap-2 text-sm bg-slate-900 border border-slate-800 text-slate-500 hover:text-brand-accent hover:border-brand-accent px-3 py-2 rounded-lg transition-colors"
           >
             <Trash2 size={16} />
           </button>
@@ -249,8 +249,8 @@ export default function DealDetailPage() {
         {/* Columna izquierda — Info del deal */}
         <div className="col-span-1 space-y-4">
           {/* Etapa */}
-          <div className="bg-brand-black-soft border border-brand-gray-dark rounded-lg p-4">
-            <p className="text-brand-gray-mid text-xs mb-2">Etapa actual</p>
+          <div className="bg-slate-900 border border-slate-800 rounded-lg p-4">
+            <p className="text-slate-500 text-xs mb-2">Etapa actual</p>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full" style={{ backgroundColor: stage?.color }} />
               <span className="text-white font-semibold text-sm">{stage?.label || deal.stage}</span>
@@ -258,63 +258,63 @@ export default function DealDetailPage() {
           </div>
 
           {/* Valor */}
-          <div className="bg-brand-black-soft border border-brand-gray-dark rounded-lg p-4">
-            <p className="text-brand-gray-mid text-xs mb-1">Valor del deal</p>
-            <p className="text-brand-red text-2xl font-bold">{formatCOP(deal.valueCop)}</p>
+          <div className="bg-slate-900 border border-slate-800 rounded-lg p-4">
+            <p className="text-slate-500 text-xs mb-1">Valor del deal</p>
+            <p className="text-brand-accent text-2xl font-bold">{formatCOP(deal.valueCop)}</p>
           </div>
 
           {/* Info del servicio */}
-          <div className="bg-brand-black-soft border border-brand-gray-dark rounded-lg p-4 space-y-3">
+          <div className="bg-slate-900 border border-slate-800 rounded-lg p-4 space-y-3">
             <div>
-              <p className="text-brand-gray-mid text-xs mb-1">Servicio</p>
+              <p className="text-slate-500 text-xs mb-1">Servicio</p>
               <p className="text-white text-sm">{deal.service}</p>
             </div>
             <div>
-              <p className="text-brand-gray-mid text-xs mb-1">Nivel</p>
+              <p className="text-slate-500 text-xs mb-1">Nivel</p>
               <p className="text-white text-sm">{deal.level}</p>
             </div>
             <div>
-              <p className="text-brand-gray-mid text-xs mb-1">Creado</p>
+              <p className="text-slate-500 text-xs mb-1">Creado</p>
               <p className="text-white text-sm">{formatDate(deal.createdAt)}</p>
             </div>
             <div>
-              <p className="text-brand-gray-mid text-xs mb-1">Última actualización</p>
+              <p className="text-slate-500 text-xs mb-1">Última actualización</p>
               <p className="text-white text-sm">{formatRelativeDate(deal.updatedAt)}</p>
             </div>
           </div>
 
           {/* Próximo seguimiento */}
           {deal.nextFollowUp && (
-            <div className="bg-brand-black-soft border border-brand-gray-dark rounded-lg p-4">
+            <div className="bg-slate-900 border border-slate-800 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-1">
-                <Calendar size={14} className="text-brand-gray-mid" />
-                <p className="text-brand-gray-mid text-xs">Próximo seguimiento</p>
+                <Calendar size={14} className="text-slate-500" />
+                <p className="text-slate-500 text-xs">Próximo seguimiento</p>
               </div>
               <p className="text-white text-sm font-semibold">{formatDate(deal.nextFollowUp)}</p>
             </div>
           )}
 
           {/* Contacto */}
-          <div className="bg-brand-black-soft border border-brand-gray-dark rounded-lg p-4 space-y-2">
-            <p className="text-brand-gray-mid text-xs mb-2">Contacto</p>
+          <div className="bg-slate-900 border border-slate-800 rounded-lg p-4 space-y-2">
+            <p className="text-slate-500 text-xs mb-2">Contacto</p>
             <p className="text-white text-sm font-semibold">{deal.contact.name}</p>
-            {deal.contact.company && <p className="text-brand-gray-mid text-xs">{deal.contact.company}</p>}
-            {deal.contact.email && <p className="text-brand-gray-mid text-xs">{deal.contact.email}</p>}
-            {deal.contact.phone && <p className="text-brand-gray-mid text-xs">{deal.contact.phone}</p>}
-            <p className="text-brand-gray-mid text-xs">Fuente: {deal.contact.source}</p>
+            {deal.contact.company && <p className="text-slate-500 text-xs">{deal.contact.company}</p>}
+            {deal.contact.email && <p className="text-slate-500 text-xs">{deal.contact.email}</p>}
+            {deal.contact.phone && <p className="text-slate-500 text-xs">{deal.contact.phone}</p>}
+            <p className="text-slate-500 text-xs">Fuente: {deal.contact.source}</p>
           </div>
 
           {/* Notas */}
           {deal.notes && (
-            <div className="bg-brand-black-soft border border-brand-gray-dark rounded-lg p-4">
-              <p className="text-brand-gray-mid text-xs mb-2">Notas</p>
+            <div className="bg-slate-900 border border-slate-800 rounded-lg p-4">
+              <p className="text-slate-500 text-xs mb-2">Notas</p>
               <p className="text-white text-sm leading-relaxed">{deal.notes}</p>
             </div>
           )}
         </div>
 
         {/* Columna derecha — Historial */}
-        <div className="col-span-2 bg-brand-black-soft border border-brand-gray-dark rounded-lg p-6">
+        <div className="col-span-2 bg-slate-900 border border-slate-800 rounded-lg p-6">
           <ActivityFeed
             dealId={id}
             activities={deal.activities}

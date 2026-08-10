@@ -60,15 +60,15 @@ export function Pipeline() {
     return dealsByStage(stageId).reduce((sum, d) => sum + Number(d.valueCop), 0)
   }
 
-  if (loading) return <p className="text-brand-gray-mid text-sm">Cargando pipeline...</p>
+  if (loading) return <p className="text-slate-500 text-sm">Cargando pipeline...</p>
 
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-white">Pipeline</h1>
-          <p className="text-brand-gray-mid text-sm">{deals.length} deals en total</p>
-          <p className="text-brand-gray-mid text-xs mt-1 max-w-xl">
+          <p className="text-slate-500 text-sm">{deals.length} deals en total</p>
+          <p className="text-slate-500 text-xs mt-1 max-w-xl">
             Arrastrá las cards entre columnas para avanzar cada oportunidad. Hacé click en
             una card para ver el detalle completo y registrar actividades. Recibirás un
             email automático en cada cambio de etapa.
@@ -76,7 +76,7 @@ export function Pipeline() {
         </div>
         <button
           onClick={() => { setEditing(null); setDefaultStage('LEAD'); setFormOpen(true) }}
-          className="flex items-center gap-2 bg-brand-red text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
+          className="flex items-center gap-2 bg-brand-accent text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
         >
           <Plus size={16} /> Nuevo deal
         </button>
@@ -90,7 +90,7 @@ export function Pipeline() {
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  className="bg-brand-black-soft border border-brand-gray-dark rounded-lg p-3 min-h-[400px]"
+                  className="bg-slate-900 border border-slate-800 rounded-lg p-3 min-h-[400px]"
                 >
                   <div className="flex items-center gap-2 mb-1">
                     {(() => {
@@ -99,7 +99,7 @@ export function Pipeline() {
                     })()}
                     <p className="text-white text-sm font-medium">{stage.label}</p>
                   </div>
-                  <p className="text-brand-gray-mid text-xs mb-3">
+                  <p className="text-slate-500 text-xs mb-3">
                     {dealsByStage(stage.id).length} · {formatCOP(stageTotal(stage.id))}
                   </p>
                   {dealsByStage(stage.id).map((deal, index) => (
@@ -111,7 +111,7 @@ export function Pipeline() {
                     />
                   ))}
                   {dealsByStage(stage.id).length === 0 && (
-                    <p className="text-brand-gray-mid text-xs text-center py-4 px-2">
+                    <p className="text-slate-500 text-xs text-center py-4 px-2">
                       {stage.id === 'LEAD'
                         ? 'Usá "Nuevo deal" para agregar tu primera oportunidad'
                         : `Sin deals en ${stage.label}`}

@@ -5,8 +5,8 @@ interface KPICardProps {
 
 export function KPICard({ label, value }: KPICardProps) {
   return (
-    <div className="bg-brand-black-soft border border-brand-gray-dark rounded-lg p-4">
-      <p className="text-brand-gray-mid text-xs">{label}</p>
+    <div className="bg-slate-900 border border-slate-800 rounded-lg p-4">
+      <p className="text-slate-500 text-xs">{label}</p>
       <p className="text-white text-2xl font-bold mt-1">{value}</p>
     </div>
   )

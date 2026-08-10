@@ -30,3 +30,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
   cursor: pointer;
 }
+
+select {
+  @apply bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-300 dark:border-slate-600;
+}
+
+select option {
+  @apply bg-white dark:bg-slate-900 text-slate-900 dark:text-white;
+}
