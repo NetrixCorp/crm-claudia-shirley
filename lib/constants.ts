@@ -68,9 +68,16 @@ export const CONTACT_SOURCES = [
 ] as const
 
 export const SERVICE_TYPES = [
-  'CRM', 'Landing', 'Ecommerce', 'Dashboard', 'Chatbot',
-  'Automatizacion', 'Web', 'API', 'Diagnostico',
+  'VentaAutos', 'SeguimientoClientes', 'Negociacion', 'CierreVentas', 'Postventa',
 ] as const
+
+export const SERVICE_TYPE_LABELS: Record<(typeof SERVICE_TYPES)[number], string> = {
+  VentaAutos: 'Venta de Autos',
+  SeguimientoClientes: 'Seguimiento de Clientes',
+  Negociacion: 'Negociación',
+  CierreVentas: 'Cierre de Ventas',
+  Postventa: 'Postventa',
+}
 
 export const SERVICE_LEVELS = ['N1', 'N2', 'N3', 'N4'] as const
 

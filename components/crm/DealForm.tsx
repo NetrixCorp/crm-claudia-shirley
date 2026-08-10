@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { X } from 'lucide-react'
-import { SERVICE_TYPES, SERVICE_LEVELS, PRICING_DEFAULTS } from '@/lib/constants'
+import { SERVICE_TYPES, SERVICE_TYPE_LABELS, SERVICE_LEVELS, PRICING_DEFAULTS } from '@/lib/constants'
 import { trackEvent } from '@/lib/analytics'
 
 interface DealFormProps {
@@ -21,7 +21,7 @@ export function DealForm({ deal, defaultStage, onClose, onSaved }: DealFormProps
   const [form, setForm] = useState({
     contactId: deal?.contactId || '',
     title: deal?.title || '',
-    service: deal?.service || 'CRM',
+    service: deal?.service || 'VentaAutos',
     level: deal?.level || 'N1',
     valueCop: deal?.valueCop ? String(deal.valueCop) : String(PRICING_DEFAULTS.defaultDealValue),
     stage: deal?.stage || defaultStage || 'LEAD',
@@ -96,7 +96,7 @@ export function DealForm({ deal, defaultStage, onClose, onSaved }: DealFormProps
                 onChange={(e) => setForm({ ...form, service: e.target.value })}
                 className={FIELD_CLASS}
               >
-                {SERVICE_TYPES.map((s) => (<option key={s} value={s}>{s}</option>))}
+                {SERVICE_TYPES.map((s) => (<option key={s} value={s}>{SERVICE_TYPE_LABELS[s]}</option>))}
               </select>
             </div>
             <div>

@@ -188,15 +188,11 @@ enum ContactStatus {
 }
 
 enum ServiceType {
-  CRM
-  Landing
-  Ecommerce
-  Dashboard
-  Chatbot
-  Automatizacion
-  Web
-  API
-  Diagnostico
+  VentaAutos
+  SeguimientoClientes
+  Negociacion
+  CierreVentas
+  Postventa
 }
 
 enum ServiceLevel {

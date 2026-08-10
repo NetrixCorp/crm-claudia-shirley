@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react'
 import { X, Upload } from 'lucide-react'
 import type { ServiceType } from '@prisma/client'
-import { SERVICE_TYPES } from '@/lib/constants'
+import { SERVICE_TYPES, SERVICE_TYPE_LABELS } from '@/lib/constants'
 import type { NewLead } from '@/types/leads'
 
 interface LeadImporterProps {
@@ -158,7 +158,7 @@ export function LeadImporter({ onImport, onClose }: LeadImporterProps) {
                             >
                               <option value="">Sin definir</option>
                               {SERVICE_TYPES.map((s) => (
-                                <option key={s} value={s}>{s}</option>
+                                <option key={s} value={s}>{SERVICE_TYPE_LABELS[s]}</option>
                               ))}
                             </select>
                           </td>
