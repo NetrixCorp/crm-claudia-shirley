@@ -25,7 +25,7 @@ export async function GET() {
 
   const html = `
     <div style="font-family: sans-serif;">
-      <h2 style="color:#0D0D0D;">Reporte semanal — NETRIX CRM</h2>
+      <h2 style="color:#0D0D0D;">Reporte semanal — CRM Claudia Shirley</h2>
       <p><strong>Leads nuevos esta semana:</strong> ${leadsNuevos}</p>
       <p><strong>Deals cerrados esta semana:</strong> ${dealsGanados.length} (${formatCOP(revenueGanado)})</p>
       <p><strong>Revenue en pipeline activo:</strong> ${formatCOP(revenuePipeline)}</p>

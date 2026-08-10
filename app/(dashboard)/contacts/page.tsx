@@ -1,16 +1,19 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Plus, Trash2, Pencil } from 'lucide-react'
+import { Plus, Trash2, Pencil, Upload } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { ContactForm } from '@/components/crm/ContactForm'
+import { LeadImporter } from '@/components/leads/LeadImporter'
 import { formatRelativeDate, getInitials, buildWhatsAppLink } from '@/lib/utils'
+import type { NewLead } from '@/types/leads'
 
 export default function ContactsPage() {
   const [contacts, setContacts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [formOpen, setFormOpen] = useState(false)
   const [editing, setEditing] = useState<any | null>(null)
+  const [importerOpen, setImporterOpen] = useState(false)
 
   async function loadContacts() {
     setLoading(true)
@@ -27,6 +30,18 @@ export default function ContactsPage() {
     loadContacts()
   }
 
+  async function handleImportLeads(leads: NewLead[]) {
+    for (const lead of leads) {
+      await fetch('/api/contacts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: lead.name, phone: lead.phone, source: lead.source }),
+      })
+    }
+    setImporterOpen(false)
+    loadContacts()
+  }
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -34,17 +49,25 @@ export default function ContactsPage() {
           <h1 className="text-2xl font-bold text-white">Contactos</h1>
           <p className="text-brand-gray-mid text-sm">{contacts.length} contactos registrados</p>
           <p className="text-brand-gray-mid text-xs mt-1 max-w-lg">
-            Registrá aquí a cada persona que contacte a NETRIX. Un contacto puede tener
+            Registrá aquí a cada persona que contacte a Claudia Shirley. Un contacto puede tener
             varios deals asociados. Usá el ícono de WhatsApp para escribirle directamente
             con un mensaje prellenado.
           </p>
         </div>
-        <button
-          onClick={() => { setEditing(null); setFormOpen(true) }}
-          className="flex items-center gap-2 bg-brand-red text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
-        >
-          <Plus size={16} /> Nuevo contacto
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setImporterOpen(true)}
+            className="flex items-center gap-2 border border-brand-gray-dark text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-brand-gray-dark transition-colors"
+          >
+            <Upload size={16} /> Importar leads
+          </button>
+          <button
+            onClick={() => { setEditing(null); setFormOpen(true) }}
+            className="flex items-center gap-2 bg-brand-red text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
+          >
+            <Plus size={16} /> Nuevo contacto
+          </button>
+        </div>
       </div>
 
       {loading ? (
@@ -104,7 +127,7 @@ export default function ContactsPage() {
                     <div className="flex gap-2 justify-end items-center">
                       {c.phone && (
                         <a
-                          href={buildWhatsAppLink(c.phone, `Hola ${c.name}, te escribo desde NETRIX.`)}
+                          href={buildWhatsAppLink(c.phone, `Hola ${c.name}, te escribo desde Claudia Shirley.`)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-brand-gray-mid hover:text-green-500"
@@ -133,6 +156,13 @@ export default function ContactsPage() {
           contact={editing}
           onClose={() => setFormOpen(false)}
           onSaved={() => { setFormOpen(false); loadContacts() }}
+        />
+      )}
+
+      {importerOpen && (
+        <LeadImporter
+          onImport={handleImportLeads}
+          onClose={() => setImporterOpen(false)}
         />
       )}
     </div>

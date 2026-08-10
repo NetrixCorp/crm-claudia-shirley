@@ -1,10 +1,10 @@
-import { NETRIX } from '@/lib/constants'
+import { NETRIX, SITE_CONFIG } from '@/lib/constants'
 
 export default function CuentaSuspendidaPage() {
   return (
     <main className="min-h-screen bg-brand-black flex items-center justify-center p-8">
       <div className="max-w-md text-center">
-        <h1 className="text-3xl font-bold text-white tracking-widest mb-2">NETRIX</h1>
+        <h1 className="text-3xl font-bold text-white tracking-widest mb-2">{SITE_CONFIG.businessName}</h1>
         <div className="w-12 h-0.5 bg-brand-red mx-auto mb-6" />
         <h2 className="text-lg font-semibold text-white mb-3">Acceso suspendido</h2>
         <p className="text-brand-gray-mid text-sm mb-8 leading-relaxed">

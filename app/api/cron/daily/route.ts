@@ -32,7 +32,7 @@ export async function GET() {
 
   const html = `
     <div style="font-family: sans-serif;">
-      <h2 style="color:#0D0D0D;">Resumen diario — NETRIX CRM</h2>
+      <h2 style="color:#0D0D0D;">Resumen diario — CRM Claudia Shirley</h2>
       ${followUpsHoy.length > 0 ? `
         <h3>Seguimientos de hoy (${followUpsHoy.length})</h3>
         <ul>${followUpsHoy.map((d) => `<li>${d.title} — ${d.contact.name} — ${formatCOP(Number(d.valueCop))}</li>`).join('')}</ul>

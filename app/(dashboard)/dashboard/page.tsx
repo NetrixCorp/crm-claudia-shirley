@@ -27,11 +27,11 @@ export default async function DashboardPage() {
     <div>
       <h1 className="text-2xl font-bold text-white mb-2">Dashboard</h1>
       <p className="text-brand-gray-mid text-sm mb-8">
-        Vista general del pipeline comercial de NETRIX
+        Vista general del pipeline comercial
       </p>
       {sinDatos && (
         <div className="bg-brand-black-soft border border-brand-gray-dark rounded-lg p-6 mb-6">
-          <h3 className="text-white font-semibold mb-2">Bienvenido al CRM de NETRIX</h3>
+          <h3 className="text-white font-semibold mb-2">Bienvenido al CRM de Claudia Shirley</h3>
           <p className="text-brand-gray-mid text-sm leading-relaxed mb-4">
             Para empezar, seguí estos 3 pasos:
           </p>

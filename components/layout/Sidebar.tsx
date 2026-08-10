@@ -13,6 +13,7 @@ import {
   MessageSquare,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { SITE_CONFIG } from '@/lib/constants'
 
 const NAV_ITEMS = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -35,8 +36,8 @@ export function Sidebar() {
   return (
     <aside className="w-64 bg-brand-black-soft border-r border-brand-gray-dark flex-shrink-0 flex flex-col">
       <div className="p-6 border-b border-brand-gray-dark">
-        <h1 className="text-xl font-bold text-white tracking-widest">NETRIX</h1>
-        <p className="text-xs text-brand-gray-mid mt-0.5">CRM Interno</p>
+        <h1 className="text-xl font-bold text-white tracking-widest">{SITE_CONFIG.businessName}</h1>
+        <p className="text-xs text-brand-gray-mid mt-0.5">CRM</p>
       </div>
       <nav className="flex-1 p-4 space-y-1">
         {NAV_ITEMS.map(({ href, label, icon: Icon, subItems }) => {

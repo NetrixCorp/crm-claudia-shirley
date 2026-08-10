@@ -12,7 +12,7 @@ export async function sendInternalNotification(subject: string, html: string) {
 
   try {
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'NETRIX CRM <onboarding@resend.dev>',
+      from: process.env.RESEND_FROM_EMAIL || 'CRM Claudia Shirley <onboarding@resend.dev>',
       to: NETRIX.email,
       subject,
       html,
